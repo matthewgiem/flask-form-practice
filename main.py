@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -13,7 +13,12 @@ def update():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    print("home")
+    username_credentials = None
+    userpassword_credentials = None
+    if request.method == "POST":
+        username_credentials = request.form['username']
+        userpassword_credentials = request.form['userpassword']
+    print(username_credentials, userpassword_credentials)
     return render_template("new.html")
 
 if __name__ == "__main__":
